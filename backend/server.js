@@ -149,6 +149,14 @@ app.get("/api/health", (req, res) => {
   res.json({ ok: true, hasApiKey: Boolean(API_KEY) });
 });
 
+app.get("/", (req, res) => {
+  res.json({
+    app: "Overhear API",
+    status: "running",
+    healthCheck: "/api/health"
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Overhear backend running at http://localhost:${PORT}`);
   console.log(API_KEY ? "API key loaded." : "WARNING: no GEMINI_API_KEY set — copy .env.example to .env and add one.");
