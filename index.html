@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Overhear — Hear a place before you visit it</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="#" class="logo"><span class="dot"></span>Overhear</a>
+      <nav class="nav-links">
+        <a href="#explore" data-i18n="nav_explore">Explore</a>
+        <a href="#how" data-i18n="nav_how">How it works</a>
+        <span class="nav-tag" data-i18n="nav_tag">AI voices now · human voices coming soon</span>
+        <select id="langSwitcher" class="lang-switcher" aria-label="Language"></select>
+      </nav>
+    </div>
+  </header>
+
+  <div id="explorePage">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow on-dark" data-i18n="hero_eyebrow">Tune in before you fly</p>
+          <h1 data-i18n-html="hero_h1">Hear a place, <em>before</em> you land there.</h1>
+          <p class="lede" data-i18n="hero_lede">Overhear turns any destination into a short, spoken guide — the landscape, how people actually live, the customs worth knowing — so you arrive already a little bit local.</p>
+          <div class="search-row">
+            <div class="search-field">
+              <input id="heroSearch" type="text" data-i18n-placeholder="hero_search_placeholder" placeholder="Search any place on Earth — try 'Port Elizabeth'" aria-label="Search destinations" autocomplete="off">
+              <div class="suggestions" id="heroSuggestions" hidden></div>
+            </div>
+            <button class="btn" id="heroCta" data-i18n="hero_cta">Explore</button>
+          </div>
+        </div>
+        <div class="transmission-card">
+          <p class="eyebrow on-dark" data-i18n="transmission_label">Now playing · sample transmission</p>
+          <div class="transmission" id="transmission"></div>
+          <div class="transmission-meta">
+            <span data-i18n="transmission_city">Kyoto, Japan</span>
+            <span data-i18n="transmission_duration">04:12 guide</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="explore">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" data-i18n="explore_eyebrow">The atlas so far</p>
+            <h2 data-i18n="explore_h2">Search for a place</h2>
+          </div>
+          <div class="search-field explore-search">
+            <input id="searchInput" type="text" data-i18n-placeholder="search_placeholder" placeholder="Search any place on Earth…" aria-label="Search destinations" autocomplete="off">
+            <div class="suggestions" id="exploreSuggestions" hidden></div>
+          </div>
+        </div>
+        <div class="filters" id="filterBar"></div>
+        <br>
+        <div class="grid" id="resultsList"></div>
+      </div>
+    </section>
+
+
+    <section class="section" id="how" style="background:var(--sand);">
+      <div class="container">
+        <p class="eyebrow" data-i18n="how_eyebrow">Three steps</p>
+        <h2 style="font-family:var(--display); font-size:clamp(1.7rem,2.6vw,2.3rem); margin:6px 0 30px;" data-i18n="how_h2">From curiosity to arriving ready</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="num">01</div>
+            <h3 data-i18n="step1_title">Pick a place</h3>
+            <p data-i18n="step1_body">Search by city, country, or just a feeling — coastline, mountains, markets.</p>
+          </div>
+          <div class="step">
+            <div class="num">02</div>
+            <h3 data-i18n="step2_title">Press play</h3>
+            <p data-i18n="step2_body">A short spoken guide covers the landscape, daily life, culture, and practical notes.</p>
+          </div>
+          <div class="step">
+            <div class="num">03</div>
+            <h3 data-i18n="step3_title">Arrive ready</h3>
+            <p data-i18n="step3_body">Skip the culture shock. You'll already know how the place actually works.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="place-view" id="placeView" hidden>
+    <div class="container">
+      <a href="#" class="back-link" id="backLink" data-i18n="back_link">← Back to all destinations</a>
+      <div class="place-head">
+        <div>
+          <h2 id="placeName">—</h2>
+          <div class="country" id="placeCountry">—</div>
+        </div>
+        <button class="btn play-all-btn" id="playAllBtn" data-i18n="play_guide">▶ Play full guide</button>
+      </div>
+      <div class="gallery" id="placeGallery" hidden></div>
+      <div class="track-list" id="trackList"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 data-i18n="footer_next_title">What's next</h3>
+          <p data-i18n="footer_next_body">Real local narrators are joining the AI voices city by city. After the website, Overhear becomes an app: offline listening, and narration that triggers automatically as you walk.</p>
+        </div>
+        <div>
+          <h3 data-i18n="footer_note_title">A note on the guides</h3>
+          <p data-i18n="footer_note_body">These are a starting point, not a replacement for a local guide — think of it as the research you'd do anyway, just spoken aloud.</p>
+        </div>
+      </div>
+      <div class="footer-fine">
+        <span data-i18n="footer_copy">© 2026 Overhear</span>
+        <span data-i18n="footer_proto">Prototype build — sample destinations for demonstration</span>
+      </div>
+    </div>
+  </footer>
+
+<script src="data.js"></script>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
