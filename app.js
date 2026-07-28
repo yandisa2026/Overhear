@@ -384,28 +384,45 @@
   // Change this to your deployed backend's URL once it's live (e.g. from
   // Render, Railway, or Fly.io) so generation works for every visitor, not
   // just on your own machine. Until then, it only works locally.
-  const BACKEND_URL = "http://localhost:3001";
+  const API_URL = "https://overhear-1.onrender.com";
 
   // Calls your local backend (see backend/README.md), which calls Google's
   // free Gemini API and keeps the key private. Throws a friendly error if
   // the backend isn't reachable or returns a problem.
-  async function fetchGeneratedGuide(query){
-    let response;
-    try{
-      response = await fetch(`${BACKEND_URL}/api/generate-guide`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query, language: currentLang })
-      });
-    } catch(networkErr){
-      throw new Error(`Can't reach the local backend at ${BACKEND_URL}. Make sure it's running — open a terminal in the backend folder and run npm start (see backend/README.md).`);
-    }
-    const parsed = await response.json();
-    if(!response.ok){
-      throw new Error(parsed.error || `Backend responded with ${response.status}`);
-    }
-    return parsed;
+  // Change this to your deployed backend URL
+const API_URL = "https://overhear-1.onrender.com";
+
+// Calls the Render backend, which calls Gemini securely
+async function fetchGeneratedGuide(query){
+  let response;
+
+  try {
+    response = await fetch(`${API_URL}/api/generate-guide`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        query,
+        language: currentLang
+      })
+    });
+  } catch (networkErr) {
+    throw new Error(
+      `Can't reach the backend at ${API_URL}. Please try again later.`
+    );
   }
+
+  const parsed = await response.json();
+
+  if (!response.ok) {
+    throw new Error(
+      parsed.error || `Backend responded with ${response.status}`
+    );
+  }
+
+  return parsed;
+}
 
   function buildGeneratedDestination(query, parsed){
     const times = ["00:00","00:45","01:30","02:15"];
