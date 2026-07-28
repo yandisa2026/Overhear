@@ -384,7 +384,7 @@
   // Change this to your deployed backend's URL once it's live (e.g. from
   // Render, Railway, or Fly.io) so generation works for every visitor, not
   // just on your own machine. Until then, it only works locally.
-  const API_URL = "https://overhear-1.onrender.com";
+  //const API_URL = "https://overhear-1.onrender.com";
 
   // Calls your local backend (see backend/README.md), which calls Google's
   // free Gemini API and keeps the key private. Throws a friendly error if
